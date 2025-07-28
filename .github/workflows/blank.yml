@@ -28,9 +28,14 @@ jobs:
         run: |
             echo 'head commit: ${{ github.event.pull_request.title  }}'
             echo 'Workflow commit :${{ toJson(github.event.pull_request.commits) }}'
-            RANDOM_NUMBER=$((RANDOM))
+            RANDOM_NUMBER=$(( (RANDOM % 2) + 1 ))
             echo "Random number: $RANDOM_NUMBER"
-            exit 1
+            if [ "$RANDOM_NUMBER" -eq 2 ]; then
+              echo "Random number is 2 — failing the job."
+              exit 1
+            else
+              echo "Random number is 1 — job continues."
+            fi
       - name: Run smoke tests
 #        if: contains(github.event.head_commit.message, 'Create PR')
         if: contains(github.event.workflow_run.head_commit.message, 'Create PR')
