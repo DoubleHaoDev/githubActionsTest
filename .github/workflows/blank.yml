@@ -28,6 +28,7 @@ jobs:
         run: |
             echo 'head commit: ${{ github.event.pull_request.title  }}'
             echo 'Workflow commit :${{ toJson(github.event.pull_request.commits) }}'
+            echo '${{shut - i 1-100 -n 1}}'
             exit 1
       - name: Run smoke tests
 #        if: contains(github.event.head_commit.message, 'Create PR')
