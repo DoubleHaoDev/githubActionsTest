@@ -26,8 +26,8 @@ jobs:
           #        if: contains(github.event.head_commit.message, 'Create PR')
 #        if: contains(github.event.workflow_run.head_commit.message, 'Create PR')
         run: |
-            echo 'head commit: ${{ github.event.head_commit.message }}'
-            echo 'Workflow commit :${{ github.event.workflow_run.head_commit.message }}'
+            echo 'head commit: ${{ github.event.pull_request.title  }}'
+            echo 'Workflow commit :${{ github.event.pull_request.body }}'
       - name: Run smoke tests
 #        if: contains(github.event.head_commit.message, 'Create PR')
         if: contains(github.event.workflow_run.head_commit.message, 'Create PR')
